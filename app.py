@@ -1,7 +1,7 @@
 import streamlit as st
 import joblib as jb 
 import tensorflow as tf
-# from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler
 
 model = tf.keras.models.load_model("Graduate_admission_model_up.h5")
 scaler=jb.load('scale_obj.pkl','rb')
@@ -30,9 +30,10 @@ if st.button('Submit'):
     prediction_result = make_prediction()
     # st.write("Prediction:", prediction_result)
     # print(prediction_result)
-    if prediction_result>0.75:
-        print(prediction_result)
+    if prediction_result>0.70:
+        #st.show(prediction_result)
         st.write(" Hurray!! The student is eligible.")
     else:
         print(prediction_result)
+        #st.show(prediction_result)
         st.write("Please try next time !!")
